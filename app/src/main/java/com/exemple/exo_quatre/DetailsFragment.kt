@@ -8,10 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.button.MaterialButton
 
 class DetailsFragment : Fragment() {
 
@@ -24,19 +25,19 @@ class DetailsFragment : Fragment() {
 
         val data = arguments?.getSerializable("data") as Pharmacy
 
-        val image = view.findViewById(R.id.imageView) as ImageView
-        val nom = view.findViewById(R.id.textView) as TextView
-        val adresse = view.findViewById(R.id.textView2) as TextView
-        val horaireOverture = view.findViewById(R.id.textView3) as TextView
-        val horaireFermeture = view.findViewById(R.id.textView4) as TextView
-        val TextDescriptif = view.findViewById(R.id.textView5) as TextView
-        val UrlFacebook = view.findViewById(R.id.button) as Button
-        val localisation = view.findViewById(R.id.button2) as Button
+        val image = view.findViewById(R.id.details_photo) as ImageView
+        val nom = view.findViewById(R.id.details_name) as TextView
+        val adresse = view.findViewById(R.id.details_adresse) as TextView
+        val horaireOverture = view.findViewById(R.id.details_open_time) as TextView
+        val horaireFermeture = view.findViewById(R.id.details_close_time) as TextView
+        val TextDescriptif = view.findViewById(R.id.details_description) as TextView
+        val UrlFacebook = view.findViewById(R.id.details_facebook_button) as ImageButton
+        val localisation = view.findViewById(R.id.details_location_button) as ImageButton
 
         nom.text = data.name
         adresse.text = data.adresse
-        horaireFermeture.text = data.heureFerme
-        horaireOverture.text = data.heureOuvert
+        horaireFermeture.text = "fermeture: " + data.heureFerme
+        horaireOverture.text = "ouverture: " + data.heureOuvert
         TextDescriptif.text = data.textDescr
         image.setImageDrawable(ContextCompat.getDrawable(requireActivity(), data.img))
         localisation.setOnClickListener(
