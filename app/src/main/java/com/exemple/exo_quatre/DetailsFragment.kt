@@ -12,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import com.google.android.material.button.MaterialButton
 
 class DetailsFragment : Fragment() {
@@ -33,6 +34,7 @@ class DetailsFragment : Fragment() {
         val TextDescriptif = view.findViewById(R.id.details_description) as TextView
         val UrlFacebook = view.findViewById(R.id.details_facebook_button) as ImageButton
         val localisation = view.findViewById(R.id.details_location_button) as ImageButton
+        val back = view.findViewById<ImageButton>(R.id.details_back_button)
 
         nom.text = data.name
         adresse.text = data.adresse
@@ -68,6 +70,9 @@ class DetailsFragment : Fragment() {
             }
         )
 
+        back.setOnClickListener(View.OnClickListener {
+            view.findNavController().navigate(R.id.action_detailsFragment_to_mainFragment)
+        })
 
         return view
     }

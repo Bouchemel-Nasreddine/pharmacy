@@ -21,4 +21,12 @@
         <item name="cornerSizeBottomLeft">20dp</item>
         <item name="cornerFamilyBottomLeft">rounded</item>
     </style>
+    <style name="ShapeAppearanceOverlay.App.CornerRadius" parent="" >
+        <item name="cornerSize">20%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+    <style name="EditTextTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="colorControlHighlight">@color/blue</item>
+    </style>
 </resources>

@@ -8,6 +8,7 @@ class Pharmacy(
     val adresse: String,
     val phone: String,
     val localisation: String,
+    val coordinates: Pair<Double, Double>,
     val heureOuvert: String,
     val heureFerme: String,
     val textDescr: String,

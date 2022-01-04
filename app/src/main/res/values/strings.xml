@@ -1,7 +1,37 @@
 <resources>
-    <string name="app_name">exo_quatre</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Pharm</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="localisation">Localisation</string>
     <string name="facebook">Facebook</string>
+    <string name="emplacement">emplacement</string>
+    <string-array name="cities">
+        <item>El harrach</item>
+        <item>Beb Ezzouar</item>
+        <item>Rouiba</item>
+        <item>Dar baida</item>
+        <item>Alger Centre</item>
+        <item>Cheraga</item>
+        <item>Bir Khadem</item>
+        <item>Bir Mourad Rais</item>
+    </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="meet_the_right_person">Meet The right person</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_to_continue">sign in to continue</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_your_password">forgot your password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="phone">phone</string>
+    <string name="user">User Name</string>
 </resources>
