@@ -1,4 +1,4 @@
-package com.exemple.exo_quatre
+package com.exemple.exo_quatre.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import com.google.android.material.button.MaterialButton
+import com.exemple.exo_quatre.data.Pharmacy
+import com.exemple.exo_quatre.R
 
 class DetailsFragment : Fragment() {
 

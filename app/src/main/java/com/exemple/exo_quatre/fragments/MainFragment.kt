@@ -1,4 +1,4 @@
-package com.exemple.exo_quatre
+package com.exemple.exo_quatre.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -11,11 +11,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.exemple.exo_quatre.data.Pharmacy
+import com.exemple.exo_quatre.adapters.PharmacyAdapter
+import com.exemple.exo_quatre.R
 
 class MainFragment : Fragment() {
 
     val list = ArrayList<Pharmacy>()
-
     val description =
         "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old"
 
@@ -167,6 +169,26 @@ class MainFragment : Fragment() {
         val pharmacyRecyclerView = view.findViewById<RecyclerView>(R.id.pharmacy_list)
         val citiesSpinner = view.findViewById<Spinner>(R.id.city_spinner)
         val mapsButton = view.findViewById<ImageButton>(R.id.map_button)
+        val profileButton = view.findViewById<ImageButton>(R.id.profile_button)
+
+        val dropDownMenu = PopupMenu(requireContext(), profileButton)
+        val menu = dropDownMenu.menu
+
+        dropDownMenu.menuInflater.inflate(R.menu.profile_menu, menu)
+
+        dropDownMenu.setOnMenuItemClickListener (
+            PopupMenu.OnMenuItemClickListener {
+                    item ->
+                when(item.itemId) {
+                    R.id.traitement_item ->
+                        view.findNavController().navigate(R.id.action_mainFragment_to_traitementFragment)
+                    R.id.sign_out_item ->
+                        desconnect(view)
+
+                }
+                true
+            }
+        )
 
         pharmacyRecyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -203,7 +225,17 @@ class MainFragment : Fragment() {
             view.findNavController().navigate(R.id.action_mainFragment_to_mapsFragment)
         })
 
+        profileButton.setOnClickListener(
+            View.OnClickListener {
+                dropDownMenu.show()
+            }
+        )
+
         return view
+    }
+
+    private fun desconnect(view: View) {
+        view.findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
     }
 
 }

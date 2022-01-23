@@ -1,4 +1,4 @@
-package com.exemple.exo_quatre
+package com.exemple.exo_quatre.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.exemple.exo_quatre.R
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
 
 class SignUpFragment : Fragment() {
 
@@ -25,7 +25,6 @@ class SignUpFragment : Fragment() {
                 view.findNavController().navigate(R.id.action_signUpFragment_to_mainFragment)
             }
         )
-
         return view
     }
 

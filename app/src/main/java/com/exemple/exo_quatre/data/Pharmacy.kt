@@ -1,4 +1,4 @@
-package com.exemple.exo_quatre
+package com.exemple.exo_quatre.data
 
 import java.io.Serializable
 

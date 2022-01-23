@@ -1,4 +1,4 @@
-package com.exemple.exo_quatre
+package com.exemple.exo_quatre.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.exemple.exo_quatre.data.Pharmacy
+import com.exemple.exo_quatre.R
 
 class PharmacyAdapter(val context: Context, val view: View, val data: List<Pharmacy>) :
     RecyclerView.Adapter<PharmacyAdapter.PharmacyViewHolder>(), Filterable {
@@ -26,8 +28,6 @@ class PharmacyAdapter(val context: Context, val view: View, val data: List<Pharm
     }
 
     override fun onBindViewHolder(holder: PharmacyViewHolder, position: Int) {
-
-
         holder.photoView.setImageDrawable(ContextCompat.getDrawable(context, data[position].img))
         holder.element.setOnClickListener(
             View.OnClickListener {
