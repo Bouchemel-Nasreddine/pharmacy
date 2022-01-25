@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.exemple.exo_quatre.data.Pharmacy
 import com.exemple.exo_quatre.adapters.PharmacyAdapter
 import com.exemple.exo_quatre.R
+import com.exemple.exo_quatre.data.User
 
 class MainFragment : Fragment() {
 
@@ -162,6 +163,7 @@ class MainFragment : Fragment() {
 
         val cities = resources.getStringArray(R.array.cities)
 
+        val user = arguments?.getSerializable("user") as User
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
