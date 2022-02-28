@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigator"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/detailsFragment"
@@ -12,12 +12,12 @@
         tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_detailsFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
+            app:destination="@id/home"
             app:enterAnim="@anim/fade_out"
             app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/home"
         android:name="com.exemple.exo_quatre.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
@@ -26,24 +26,12 @@
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/fade_in"/>
-        <action
-            android:id="@+id/action_mainFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_traitementFragment"
-            app:destination="@id/traitementFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mapsFragment"
+        android:id="@+id/map"
         android:name="com.exemple.exo_quatre.fragments.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
-        <action
-            android:id="@+id/action_mapsFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -52,7 +40,7 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/home" />
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -64,11 +52,27 @@
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUpFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/home" />
     </fragment>
     <fragment
-        android:id="@+id/traitementFragment"
+        android:id="@+id/profil"
+        android:name="com.exemple.exo_quatre.fragments.ProfilFragment"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil"
+        >
+        <action
+            android:id="@+id/action_profil_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/traitement"
         android:name="com.exemple.exo_quatre.fragments.TraitementFragment"
         android:label="fragment_traitement"
         tools:layout="@layout/fragment_traitement" />
+    <fragment
+        android:id="@+id/commande"
+        android:name="com.exemple.exo_quatre.fragments.CommandeFragment"
+        android:label="fragment_commande"
+        tools:layout="@layout/fragment_commande"
+        />
 </navigation>

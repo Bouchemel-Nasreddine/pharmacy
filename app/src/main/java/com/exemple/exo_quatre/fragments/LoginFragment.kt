@@ -1,6 +1,7 @@
 package com.exemple.exo_quatre.fragments
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.exemple.exo_quatre.R
 import com.exemple.exo_quatre.RetrofitInstance
 import com.exemple.exo_quatre.data.SignInData
 import com.exemple.exo_quatre.data.User
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import okhttp3.ResponseBody
@@ -35,16 +37,21 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_login, container, false)
 
+        val pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+
         val loginBtn = view.findViewById<MaterialButton>(R.id.sign_btn)
         val signUpBtn = view.findViewById<MaterialButton>(R.id.sign_up_button)
         val passwordEditText = view.findViewById<TextInputEditText>(R.id.password_edit_text)
         val emailEditText = view.findViewById<TextInputEditText>(R.id.email_edit_text)
+        val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.nav_bar)
 
         loginBtn.setOnClickListener(
             View.OnClickListener {
                 signin(
                     requireContext(),
                     view.findNavController(),
+                    editor,
                     emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 )
@@ -60,7 +67,7 @@ class LoginFragment : Fragment() {
         return view
     }
 
-    private fun signin(context: Context, nav: NavController, email: String, password: String) {
+    private fun signin(context: Context, nav: NavController, editor: SharedPreferences.Editor, email: String, password: String) {
         val retIn = RetrofitInstance.getRetrofitInstance().create(ApiInterface::class.java)
         val signInInfo = SignInData(email, password)
         retIn.signin(signInInfo).enqueue(object : Callback<ResponseBody> {
@@ -76,8 +83,13 @@ class LoginFragment : Fragment() {
                 val res = response.body()?.string()
                 val user = User("", "", "")
                 if (extractUserFromResponse(res, user)) {
-                    val bundle = bundleOf("user" to user)
-                    nav.navigate(R.id.action_loginFragment_to_mainFragment, bundle)
+                    editor.putBoolean("connected", true)
+                    editor.putString("name", user.name)
+                    editor.putString("email", user.email)
+                    editor.putString("password", user.password)
+                    editor.apply()
+                    editor.commit()
+                    nav.navigate(R.id.action_loginFragment_to_mainFragment)
                 } else {
                     Toast.makeText(context, "Login failed!", Toast.LENGTH_SHORT).show()
                 }

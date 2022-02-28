@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="accueil"
+        android:icon="@drawable/home"
+        />
+    <item
+        android:id="@+id/map"
+        android:title="map"
+        android:icon="@drawable/map"
+        />
+    <item
+        android:id="@+id/commande"
+        android:title="commande"
+        android:icon="@drawable/commande"/>
+    <item
+        android:id="@+id/traitement"
+        android:title="traitement"
+        android:icon="@drawable/medical"/>
+    <item
+        android:id="@+id/profil"
+        android:title="profil"
+        android:icon="@drawable/person"
+        />
+
+</menu>

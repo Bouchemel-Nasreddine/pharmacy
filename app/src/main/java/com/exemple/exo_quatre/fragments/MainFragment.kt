@@ -1,11 +1,15 @@
 package com.exemple.exo_quatre.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -163,34 +167,22 @@ class MainFragment : Fragment() {
 
         val cities = resources.getStringArray(R.array.cities)
 
-        val user = arguments?.getSerializable("user") as User
-
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
+        val pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+
         val pharmacyRecyclerView = view.findViewById<RecyclerView>(R.id.pharmacy_list)
         val citiesSpinner = view.findViewById<Spinner>(R.id.city_spinner)
-        val mapsButton = view.findViewById<ImageButton>(R.id.map_button)
-        val profileButton = view.findViewById<ImageButton>(R.id.profile_button)
 
-        val dropDownMenu = PopupMenu(requireContext(), profileButton)
-        val menu = dropDownMenu.menu
-
-        dropDownMenu.menuInflater.inflate(R.menu.profile_menu, menu)
-
-        dropDownMenu.setOnMenuItemClickListener (
-            PopupMenu.OnMenuItemClickListener {
-                    item ->
-                when(item.itemId) {
-                    R.id.traitement_item ->
-                        view.findNavController().navigate(R.id.action_mainFragment_to_traitementFragment)
-                    R.id.sign_out_item ->
-                        desconnect(view)
-
-                }
-                true
-            }
-        )
+//        if (pref.getBoolean("connected", false)) {
+//            val user = User(pref.getString("name", "")!!,
+//                pref.getString("email", "")!!,
+//                pref.getString("password", "")!!,
+//            )
+//            loginCard.visibility = View.INVISIBLE
+//        }
 
         pharmacyRecyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -223,21 +215,14 @@ class MainFragment : Fragment() {
             }
         }
 
-        mapsButton.setOnClickListener(View.OnClickListener {
-            view.findNavController().navigate(R.id.action_mainFragment_to_mapsFragment)
-        })
-
-        profileButton.setOnClickListener(
-            View.OnClickListener {
-                dropDownMenu.show()
-            }
-        )
-
         return view
     }
 
-    private fun desconnect(view: View) {
-        view.findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
-    }
+//    private fun desconnect(view: View, editor: SharedPreferences.Editor) {
+//        editor.putBoolean("connected", false)
+//        editor.apply()
+//        editor.commit()
+//        view.findNavController().navigate(R.id.action_mainFragment_self)
+//    }
 
 }
