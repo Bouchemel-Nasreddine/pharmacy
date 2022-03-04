@@ -24,7 +24,7 @@ interface ApiInterface {
 
 class RetrofitInstance {
     companion object {
-        private const val BASE_URL: String = "http://9d62-105-107-159-143.ngrok.io/api/user/"
+        private const val BASE_URL: String = "http://bae7-105-235-130-238.ngrok.io/api/user/"
 
         fun getRetrofitInstance(): Retrofit {
             return Retrofit.Builder()

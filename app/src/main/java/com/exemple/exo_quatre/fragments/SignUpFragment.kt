@@ -51,7 +51,7 @@ class SignUpFragment : Fragment() {
 
     private fun signup(context: Context, nav: NavController,name: String, email: String, password: String) {
         val retIn = RetrofitInstance.getRetrofitInstance().create(ApiInterface::class.java)
-        val userInfo = User(name, email, password)
+        val userInfo = User("", name, email, password)
         retIn.registerUser(userInfo).enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Toast.makeText(
@@ -63,7 +63,7 @@ class SignUpFragment : Fragment() {
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 val res = response.body()?.string()
-                val user = User("", "", "")
+                val user = User("", "", "", "")
                 if (extractUserFromResponse(res, user)) {
                     val bundle = bundleOf("user" to user)
                     nav.navigate(R.id.action_signUpFragment_to_mainFragment, bundle)

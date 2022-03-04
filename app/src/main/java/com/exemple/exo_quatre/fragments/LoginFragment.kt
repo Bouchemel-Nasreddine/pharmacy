@@ -20,6 +20,7 @@ import com.exemple.exo_quatre.data.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.JsonObject
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
@@ -81,9 +82,10 @@ class LoginFragment : Fragment() {
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 val res = response.body()?.string()
-                val user = User("", "", "")
+                val user = User("", "", "", "")
                 if (extractUserFromResponse(res, user)) {
                     editor.putBoolean("connected", true)
+                    editor.putString("id", user.id)
                     editor.putString("name", user.name)
                     editor.putString("email", user.email)
                     editor.putString("password", user.password)

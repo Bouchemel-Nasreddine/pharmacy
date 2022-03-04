@@ -1,5 +1,6 @@
 package com.exemple.exo_quatre.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,8 +48,15 @@ class TraitementFragment : Fragment() {
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_traitement, container, false)
-
         val recyclerView = view.findViewById<RecyclerView>(R.id.traitement_list)
+        val loginView = view.findViewById<View>(R.id.go_to_login_from_traitement_view)
+
+
+        val pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+
+        if (pref.getBoolean("connected", false)) {
+            loginView.visibility = View.INVISIBLE
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val adapter = TraitementAdapter(requireContext(), view, list)

@@ -20,7 +20,22 @@ class ProfilFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_profil, container, false)
-        val loginBtn = view.findViewById<Button>(R.id.go_to_login_btn)
+        val loginBtn = view.findViewById<Button>(R.id.go_to_login_from_profil_btn)
+        val logoutBtn = view.findViewById<Button>(R.id.logout)
+
+
+
+        val pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+
+        if (pref.getBoolean("connected", false)) {
+            val user = User(pref.getString("id", "")!!,
+                pref.getString("name", "")!!,
+                pref.getString("email", "")!!,
+                pref.getString("password", "")!!,
+            )
+            loginBtn.visibility = View.INVISIBLE
+        }
 
         loginBtn.setOnClickListener(
             View.OnClickListener {
@@ -28,16 +43,12 @@ class ProfilFragment : Fragment() {
             }
         )
 
-        val pref = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
-        val editor = pref.edit()
-
-        if (pref.getBoolean("connected", false)) {
-            val user = User(pref.getString("name", "")!!,
-                pref.getString("email", "")!!,
-                pref.getString("password", "")!!,
-            )
-            loginBtn.visibility = View.INVISIBLE
-        }
+        logoutBtn.setOnClickListener(
+            View.OnClickListener {
+                editor.putBoolean("connected", false)
+                pref.getBoolean("connected", false)
+            }
+        )
 
         return view
     }
